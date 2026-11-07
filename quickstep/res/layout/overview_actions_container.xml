@@ -37,6 +37,18 @@
             android:drawableStart="@drawable/ic_screenshot"
             android:text="@string/action_screenshot" />
 
+        <Space
+            android:id="@+id/action_clear_all_space"
+            android:layout_width="@dimen/overview_actions_button_spacing"
+            android:layout_height="1dp" />
+
+        <Button
+            android:id="@+id/action_clear_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_recents_clear_all"
+            android:text="@string/recents_clear_all" />
+
         <Button
             android:id="@+id/action_split"
             android:layout_width="wrap_content"
