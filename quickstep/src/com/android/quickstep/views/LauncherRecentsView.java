@@ -194,7 +194,13 @@ public class LauncherRecentsView extends RecentsView<QuickstepLauncher, Launcher
         super.setOverviewStateEnabled(enabled);
         if (enabled) {
             LauncherState state = getStateManager().getState();
-            boolean hasClearAllButton = false;
+            boolean hasClearAllButton;
+            if (mContainer.getDeviceProfile().getDeviceProperties().isLargeScreen()) {
+                hasClearAllButton = (state.getVisibleElements(mContainer.getLauncherUiState())
+                        & CLEAR_ALL_BUTTON) != 0;
+            } else {
+                hasClearAllButton = false;
+            }
             setDisallowScrollToClearAll(!hasClearAllButton);
         }
     }
