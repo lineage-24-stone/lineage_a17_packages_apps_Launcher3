@@ -1051,7 +1051,11 @@ public abstract class RecentsView<
         mSplitSelectStateController = splitController;
         mDesktopRecentsTransitionController = desktopRecentsTransitionController;
         mActionClearAllButton = (Button) mActionsView.findViewById(R.id.action_clear_all);
-        mActionClearAllButton.setOnClickListener(this::dismissAllTasks);
+        if (mContainer.getDeviceProfile().getDeviceProperties().isLargeScreen()) {
+            mActionClearAllButton.setVisibility(GONE);
+        } else {
+            mActionClearAllButton.setOnClickListener(this::dismissAllTasks);
+        }
         // Set in launcher to be in sync with the other Surface transactions e.g. in
         // BaseDepthController for applying blur.
         mSyncTransactionApplier = surfaceTransactionApplier;
@@ -1558,6 +1562,9 @@ public abstract class RecentsView<
      * button fully visible, center page is Clear All button.
      */
     public boolean isClearAllHidden() {
+        if (mContainer.getDeviceProfile().getDeviceProperties().isLargeScreen()) {
+            return mClearAllButton.getAlpha() != 1f;
+        }
         return true;
     }
 
